@@ -13,3 +13,24 @@ Outbound Interface    FastEthernet0/0
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+
+file = open('C:/Users/Полина/Desktop/Учеба 3 семестр/Веб-программирование/web_exercises/exercises/07_files/ospf.txt')
+
+for line in file:
+    
+    ospf_route = line
+#O        10.0.24.0/24 [110/41] via 10.0.13.3, 3d18h, FastEthernet0/0
+    ospf_route = ospf_route.split(', ')
+    firstpart = ospf_route[0].split(' ')
+    prefix = firstpart[-4]
+    AD = firstpart[-3]
+    nextHop = firstpart[-1]
+    lastUpdate = ospf_route[-2]
+    OInterface = ospf_route[-1]
+
+    print('Prefix                '+prefix)
+    print('AD/Metric             '+AD[1:-1])
+    print('Next-Hop              '+nextHop)
+    print('Last update           '+lastUpdate)
+    print('Outbound Interface    '+OInterface)
+    print()

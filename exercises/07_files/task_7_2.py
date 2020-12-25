@@ -40,3 +40,11 @@ interface Ethernet0/3
 ...
 
 """
+from sys import argv
+
+
+file = open('C:/Users/Полина/Desktop/Учеба 3 семестр/Веб-программирование/web_exercises/exercises/07_files/config_sw1.txt')
+for line in file:
+    if (line.strip()) and (line[0]!='!'):
+        print(line,end='')
+file.close()

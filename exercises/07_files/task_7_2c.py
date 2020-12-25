@@ -17,3 +17,20 @@
 """
 
 ignore = ["duplex", "alias", "Current configuration"]
+
+file0=input()
+#from sys import argv
+#file0 = argv[2]
+
+file2 = open(file0,'w')
+file1 = open('config_sw1.txt')
+
+for line in file1:
+    if (line.strip()):
+        flag = True
+        for x in ignore:
+            if line.find(x)!=-1:
+                flag = False
+                break
+        if flag:
+            file2.write(line)

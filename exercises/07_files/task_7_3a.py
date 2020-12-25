@@ -24,3 +24,34 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+# Дополнить скрипт: Отсортировать вывод по номеру VLAN.
+import re
+
+dictionary = {}
+file = open('CAM_table.txt')
+for line in file:
+    if re.search(r'([0-9A-Fa-f]{4}[.]){2}([0-9A-Fa-f]{4})',line)!=None:
+        vlan=int(line.split()[0])
+        if vlan in dictionary:
+            mylist = dictionary[vlan]
+        else:
+            mylist = []
+        mylist.append(line)
+        dictionary[vlan]=mylist
+        # if vlan in dictionary:
+        #     i=0
+        #     while (vlan+i) in dictionary:
+        #          i=i+1
+        #     dictionary[vlan+i]=line
+        # else:
+        #     dictionary[vlan]=line
+# mylist = list(dictionary.keys())
+# mylist.sort()
+# for i in mylist:
+#     print(dictionary[i].replace('DYNAMIC     ',''),end='')
+
+mylist = list(dictionary.keys())
+mylist.sort()
+for i in mylist:
+    for line in dictionary[i]:
+        print(line.replace('DYNAMIC     ',''),end='')

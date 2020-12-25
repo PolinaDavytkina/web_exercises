@@ -17,3 +17,11 @@
 Ограничение: Все задания надо выполнять используя только пройденные темы.
 
 """
+import re
+
+file = open('CAM_table.txt')
+for line in file:
+    
+    if re.search(r'([0-9A-Fa-f]{4}[.]){2}([0-9A-Fa-f]{4})',line)!=None:
+        print(line.replace('DYNAMIC     ',''), end='')
+

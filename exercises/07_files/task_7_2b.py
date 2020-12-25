@@ -13,4 +13,19 @@
 
 """
 
+
 ignore = ["duplex", "alias", "Current configuration"]
+
+file1 = open('C:/Users/Полина/Desktop/Учеба 3 семестр/Веб-программирование/web_exercises/exercises/07_files/config_sw1.txt')
+file2 = open('C:/Users/Полина/Desktop/Учеба 3 семестр/Веб-программирование/web_exercises/exercises/07_files/config_sw1_cleared.txt','w')
+for line in file1:
+    
+    if (line.strip()):
+        
+        flag = True
+        for x in ignore:
+            if line.find(x)!=-1:
+                flag = False
+                break
+        if flag:
+            file2.write(line)
