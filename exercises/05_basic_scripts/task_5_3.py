@@ -63,3 +63,35 @@ trunk_template = [
     "switchport mode trunk",
     "switchport trunk allowed vlan {}",
 ]
+
+sw = {
+    'access': access_template,
+    'trunk': trunk_template
+}
+
+swtype = input('Enter access or trunk: ')
+swtype = sw[swtype]
+
+interface = input('Enter switch interface: ')
+vlan = input('Enter switchport access vlan: ')
+
+print('\n' + '-' * 30)
+print('interface {}'.format(interface))
+
+print('\n'.join(swtype).format(vlan))
+
+
+# if swtype == "access":
+#     interface = input('Enter switch interface: ')
+#     vlan = input('Enter switchport access vlan: ')
+#     print('\n' + '-' * 30)
+#     print('interface {}'.format(interface))
+#     print('\n'.join(access_template).format(vlan))
+# elif swtype=='trunk':
+#     interface = input('Enter switch interface: ')
+#     vlan = input('Enter switchport access vlan: ')
+#     print('\n' + '-' * 30)
+#     print('interface {}'.format(interface))
+#     print('\n'.join(trunk_template).format(vlan))
+# else :
+#     print('ERROR')

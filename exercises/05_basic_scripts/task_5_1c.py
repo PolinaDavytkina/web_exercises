@@ -49,3 +49,10 @@ london_co = {
         "routing": True,
     },
 }
+par1=input('Введите имя устройства:' )
+st=sorted(london_co[par1])
+par2=input('Введите имя параметра (' + ' '.join(st) + '): ' )
+try:
+    print(london_co[par1][par2])
+except KeyError:
+    print('Такого параметра нет')
