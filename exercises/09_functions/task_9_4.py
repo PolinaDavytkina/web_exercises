@@ -35,3 +35,27 @@ def ignore_command(command, ignore):
     * False - если нет
     """
     return any(word in command for word in ignore)
+
+def convert_config_to_dict(config_filename):
+    f = open(config_filename)
+    name = ''
+    d = {}
+    L = []
+    for line in f:
+        if(ignore_command(line,ignore) or (line[0]=='!')):
+            continue
+        if (len(line.strip())>0):
+            if line[0]==' ':
+                L.append(line[1:].replace('\n',''))
+            else:
+                d[name.replace('\n','')] = L
+                L = []
+                name = line.replace('\n','')
+    f.close()
+    d[name.replace('\n','')] = L
+    d.pop('')
+    return d
+
+mydist=convert_config_to_dict('C:/Users/Полина/Desktop/Учеба 3 семестр/Веб-программирование/web_exercises/exercises/09_functions/config_sw1.txt')
+for key, value in mydist.items():
+  print("{0}: {1}".format(key,value))
