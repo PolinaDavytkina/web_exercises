@@ -30,3 +30,31 @@
  '172.21.41.129', '172.21.41.130', '172.21.41.131', '172.21.41.132']
 
 """
+def convert_ranges_to_ip_list(ranges):
+    resultRanges = []
+    for oneRange in ranges:
+        r = oneRange.split('.')
+        beginOfIp = r[0]+'.'+r[1]+'.'+r[2]+'.'
+        first = int(r[3].split('-')[0])
+        # '10.1.1.1-10.1.1.10' формат
+        if len(r) == 7:
+            last = int(r[-1])
+            for i in range(first, last+1):
+                resultRanges.append(beginOfIp+str(i))
+
+        # '10.1.1.1-10' формат
+        elif len(r) == 4 and len(oneRange.split('-'))==2:
+            last = int(oneRange.split('-')[-1])
+            for i in range(first, last+1):
+                resultRanges.append(beginOfIp+str(i))
+        # '10.1.1.1' формат
+        else:
+            resultRanges.append(oneRange)
+        
+
+    return resultRanges
+
+
+if __name__ == '__main__':
+    a = ['10.1.1.1', '10.1.1.1-10.1.1.10', '10.1.1.1-10']
+    print(convert_ranges_to_ip_list(a))

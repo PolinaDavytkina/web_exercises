@@ -23,3 +23,20 @@ Reachable    Unreachable
 
 Для этого задания нет тестов
 """
+def print_ip_table(reachable, unreachable):
+    print('Reachable    Unreachable')
+    print('-----------  -------------')
+    m = max(len(reachable), len(unreachable))
+    for i in range(m):
+        a = ''
+        b = ''
+        if i<len(reachable):
+            a = reachable[i]
+        if i<len(unreachable):
+            b = unreachable[i]
+        print(a, ' '*(11-len(a)), b)
+
+if __name__ == '__main__':
+    a = ['10.1.1.1', '10.1.1.2']
+    b = ['10.1.1.7', '10.1.1.8', '10.1.1.9']
+    print_ip_table(a,b)

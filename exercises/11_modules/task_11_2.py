@@ -41,11 +41,24 @@ Cгенерировать топологию, которая соответст�
 > pip install graphviz
 
 """
-
+from task_11_1 import parse_cdp_neighbors
+# from graphviz import draw_topology
 # эти заготовки написаны чтобы показать в какой момент должна
 # рисоваться топология (после вызова функции)
 def create_network_map(filenames):
-    pass
+    d = {}
+    resultDict = {}
+    for name in filenames:
+        f = open(name)
+        dd = parse_cdp_neighbors(f.read())
+        f.close()
+        d = {**d, **dd}
+
+    # убираем дубликаты в словаре
+    for k,v in d.items():
+        if (k not in resultDict.values()) and (v not in resultDict.values()):
+            resultDict[v]=k
+    return(resultDict)
 
 
 if __name__ == "__main__":
